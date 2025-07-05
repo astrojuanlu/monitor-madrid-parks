@@ -15,7 +15,7 @@ jobs:
       with:
         python-version: 3.12
     - name: Run ingest data script
-      run: uv run --frozen scripts/ingest-data.py
+      run: uv run --no-dev --frozen scripts/ingest-data.py
       env:
         S3_BUCKET: ${{ vars.S3_BUCKET }}
         S3_ENDPOINT: ${{ vars.S3_ENDPOINT }}
