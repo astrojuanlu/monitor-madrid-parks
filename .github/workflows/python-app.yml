@@ -1,0 +1,18 @@
+name: Ingest data
+
+on:
+  schedule:
+    - cron: '55 5-1 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install the latest version of uv and set the python version to 3.12
+      uses: astral-sh/setup-uv@v6
+      with:
+        python: 3.12
+    - name: Test
+      run: uv run --frozen scripts/ingest-data.py
