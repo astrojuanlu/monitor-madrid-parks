@@ -13,8 +13,8 @@ version = "0.1.dev0"
 license = {file = "LICENSE"}
 description = "Monitor Madrid parks"
 dependencies = [
-    # "structlog",
     "pydantic>=2.11.7",
+    "structlog>=25.4.0",
 ]
 authors = [
     {name = "Juan Luis Cano Rodríguez", email = "hello@juanlu.space"}

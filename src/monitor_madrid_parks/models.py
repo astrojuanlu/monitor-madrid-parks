@@ -3,6 +3,9 @@ import typing as t
 from enum import IntEnum
 
 from pydantic import BaseModel, Field, RootModel, field_validator
+from structlog import get_logger
+
+logger = get_logger()
 
 
 class LeyendaItem(BaseModel):
@@ -33,15 +36,20 @@ class AlertAttributes(BaseModel):
     object_id: t.Annotated[int, Field(alias="OBJECTID")]
     zona_verde: t.Annotated[str, Field(alias="ZONA_VERDE")]
     alerta_descripcion: t.Annotated[AlertLevel, Field(alias="ALERTA_DESCRIPCION")]
-    fecha_incidencia: t.Annotated[dt.date, Field(alias="FECHA_INCIDENCIA")]
+    fecha_incidencia: t.Annotated[str, Field(alias="FECHA_INCIDENCIA")]
     horario_incidencia: t.Annotated[str | None, Field(alias="HORARIO_INCIDENCIA")]
     prevision_apertura: t.Annotated[str | None, Field(alias="PREVISION_APERTURA")]
     observaciones: t.Annotated[str | None, Field(alias="OBSERVACIONES")]
 
     @field_validator("fecha_incidencia", mode="before")
     @classmethod
-    def parse_fecha(cls, value: str) -> dt.date:
-        return dt.datetime.strptime(value, "%d/%m/%Y").date()
+    def parse_fecha(cls, value: str) -> str:
+        try:
+            dt.datetime.strptime(value, "%d/%m/%Y")
+        except ValueError:
+            logger.warning("Failed to parse fecha_incidencia as date", value=value)
+
+        return value
 
 
 class AlertDataFeature(BaseModel):
