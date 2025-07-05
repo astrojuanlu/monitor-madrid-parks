@@ -8,7 +8,7 @@ from monitor_madrid_parks.io import ingest_alerts, fetch_alerts
 
 
 async def main():
-    filename = f"result_{dt.datetime.now():%Y-%m-%dT%H:%M}.json"
+    filename = f"raw/result_{dt.datetime.now():%Y-%m-%dT%H:%M}.json"
 
     data = await fetch_alerts()
 
