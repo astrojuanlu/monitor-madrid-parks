@@ -1,9 +1,9 @@
-import datetime as dt
 import typing as t
 from enum import IntEnum
 
 from pydantic import BaseModel, Field, RootModel, field_validator
 from structlog import get_logger
+from whenever import PlainDateTime
 
 logger = get_logger()
 
@@ -45,7 +45,7 @@ class AlertAttributes(BaseModel):
     @classmethod
     def parse_fecha(cls, value: str) -> str:
         try:
-            dt.datetime.strptime(value, "%d/%m/%Y")
+            PlainDateTime.parse_strptime(value, format="%d/%m/%Y")
         except ValueError:
             logger.warning("Failed to parse fecha_incidencia as date", value=value)
 

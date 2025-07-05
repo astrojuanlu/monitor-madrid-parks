@@ -1,16 +1,15 @@
 import asyncio
-import datetime as dt
 import os
-from zoneinfo import ZoneInfo
 
 from obstore.store import S3Store
+from whenever import Instant
 
 from monitor_madrid_parks.io import fetch_alerts, ingest_alerts
 
 
 async def main():
-    now = dt.datetime.now(ZoneInfo("Europe/Madrid"))
-    filename = f"raw/result_{now:%Y-%m-%dT%H:%M}.json"
+    now = Instant.now().to_tz("Europe/Madrid")
+    filename = f"raw/result_{now.py_datetime():%Y-%m-%dT%H:%M}.json"
 
     data = await fetch_alerts()
 

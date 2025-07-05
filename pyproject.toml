@@ -20,6 +20,7 @@ dependencies = [
     "pyarrow>=20.0.0",
     "pydantic>=2.11.7",
     "structlog>=25.4.0",
+    "whenever>=0.8.6",
 ]
 authors = [
     {name = "Juan Luis Cano Rodríguez", email = "hello@juanlu.space"}
