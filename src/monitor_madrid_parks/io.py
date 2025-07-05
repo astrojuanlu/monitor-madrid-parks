@@ -40,6 +40,6 @@ async def ingest_alerts(data: AlertData, filename: str, store: ObjectStore) -> N
     result = await obs.put_async(
         store,
         path=filename,
-        file=BytesIO(data.model_dump_json(indent=2).encode("utf-8")),
+        file=BytesIO(data.model_dump_json(indent=2, by_alias=True).encode("utf-8")),
     )
     logger.debug("Data ingested successfully", result=result)
