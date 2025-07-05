@@ -41,7 +41,7 @@ tracker = "https://github.com/astrojuanlu/monitor-madrid-parks/issues"
 documentation = "https://monitor-madrid-parks.readthedocs.io"
 
 [dependency-groups]
-test = [
+dev = [
     "mypy",
     "hypothesis",
     "pytest",
