@@ -1,0 +1,56 @@
+{
+  "1": {
+    "description": "Abierto según horario habitual",
+    "color": [
+      38,
+      115,
+      0,
+      255
+    ]
+  },
+  "2": {
+    "description": "Hay incidencias que afectan a la utilización del parque",
+    "color": [
+      0,
+      77,
+      168,
+      255
+    ]
+  },
+  "3": {
+    "description": "Previsión de alerta amarilla; en el periodo indicado no se podrá acceder a las zonas infantiles, deportivas y de mayores.",
+    "color": [
+      255,
+      255,
+      0,
+      255
+    ]
+  },
+  "4": {
+    "description": "Previsión de alerta naranja; en el periodo indicado no se podrá acceder a las zonas infantiles, deportivas y de mayores y quedarán suspendidos todos los eventos al aire libre. Se recomienda no permanecer en los parques.",
+    "color": [
+      255,
+      170,
+      0,
+      255
+    ]
+  },
+  "5": {
+    "description": "Previsión de alerta roja; conllevará el cierre durante el periodo indicado",
+    "color": [
+      255,
+      0,
+      0,
+      255
+    ]
+  },
+  "6": {
+    "description": "Cerrado; conllevará el cierre durante el periodo indicado",
+    "color": [
+      168,
+      0,
+      0,
+      255
+    ]
+  }
+}
