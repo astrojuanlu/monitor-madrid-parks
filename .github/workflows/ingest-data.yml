@@ -16,3 +16,9 @@ jobs:
         python-version: 3.12
     - name: Run ingest data script
       run: uv run --frozen scripts/ingest-data.py
+      env:
+        S3_BUCKET: ${{ vars.S3_BUCKET }}
+        S3_ENDPOINT: ${{ vars.S3_ENDPOINT }}
+        S3_ACCESS_KEY_ID: ${{ secrets.S3_ACCESS_KEY_ID }}
+        S3_SECRET_ACCESS_KEY: ${{ secrets.S3_SECRET_ACCESS_KEY }}
+        S3_REGION: ${{ vars.S3_REGION }}
