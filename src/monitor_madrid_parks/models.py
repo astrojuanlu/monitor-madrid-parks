@@ -33,13 +33,13 @@ class AlertDataField(BaseModel):
 
 
 class AlertAttributes(BaseModel):
-    object_id: t.Annotated[int, Field(alias="OBJECTID")]
     zona_verde: t.Annotated[str, Field(alias="ZONA_VERDE")]
     alerta_descripcion: t.Annotated[AlertLevel, Field(alias="ALERTA_DESCRIPCION")]
     fecha_incidencia: t.Annotated[str, Field(alias="FECHA_INCIDENCIA")]
     horario_incidencia: t.Annotated[str | None, Field(alias="HORARIO_INCIDENCIA")]
     prevision_apertura: t.Annotated[str | None, Field(alias="PREVISION_APERTURA")]
     observaciones: t.Annotated[str | None, Field(alias="OBSERVACIONES")]
+    object_id: t.Annotated[int, Field(alias="OBJECTID")]
 
     @field_validator("fecha_incidencia", mode="before")
     @classmethod
