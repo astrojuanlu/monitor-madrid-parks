@@ -6,6 +6,7 @@ import deltalake
 import httpx
 import obstore as obs
 import polars as pl
+import pyarrow as pa
 from obstore.store import ObjectStore
 from structlog import get_logger
 
@@ -74,7 +75,6 @@ async def process_alerts(data: AlertData, filename: str) -> pl.DataFrame:
             ]
         ),
     }
-
     df = (
         pl.DataFrame(data.features, schema=schema)
         .unnest("attributes")
@@ -84,6 +84,21 @@ async def process_alerts(data: AlertData, filename: str) -> pl.DataFrame:
     )
     # TODO: Add pandera validation here?
     return df
+
+
+def get_dt_schema() -> pa.lib.Schema:
+    return pa.schema(
+        [
+            pa.field("zona_verde", pa.large_string()),
+            pa.field("alerta_descripcion", pa.int64()),
+            pa.field("fecha_incidencia", pa.large_string()),
+            pa.field("horario_incidencia", pa.large_string()),
+            pa.field("prevision_apertura", pa.int64()),
+            pa.field("observaciones", pa.large_string()),
+            pa.field("object_id", pa.int64()),
+            pa.field("source_file", pa.large_string()),
+        ]
+    )
 
 
 async def ingest_table(
