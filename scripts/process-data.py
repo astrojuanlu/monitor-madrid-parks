@@ -56,6 +56,8 @@ async def main():
 
         dt = DeltaTable(table_uri, storage_options=storage_options)
 
+    # TODO: This logic is not very robust:
+    # if any object fails to process, the whole script will fail!
     for result_list in obs.list(store, prefix="raw/"):
         for obj in result_list:
             logger.info("Processing object", obj=obj)
