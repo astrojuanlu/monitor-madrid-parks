@@ -1,10 +1,26 @@
 import asyncio
 import os
 
+import structlog
 from obstore.store import S3Store
 from whenever import Instant
 
 from monitor_madrid_parks.io import fetch_alerts, ingest_alerts
+
+# TODO: This configuration should happen only once,
+# see https://www.structlog.org/en/25.4.0/configuration.html
+structlog.configure(
+    processors=[
+        structlog.contextvars.merge_contextvars,
+        structlog.processors.add_log_level,
+        structlog.processors.StackInfoRenderer(),
+        structlog.dev.set_exc_info,
+        structlog.processors.TimeStamper(fmt="%Y-%m-%d %H:%M:%S.%fZ", utc=True),
+        structlog.dev.ConsoleRenderer(),
+    ],
+)
+
+logger = structlog.get_logger()
 
 
 async def main():
